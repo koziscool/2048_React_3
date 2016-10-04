@@ -25,7 +25,6 @@ var Board2048 = React.createClass({
 
 var Tile2048 = React.createClass({
 
-
   render: function () {
 
     var colors =  [ 'lightgray','orange', 'khaki', 'firebrick', 'lightgreen', 'deepskyblue', 
