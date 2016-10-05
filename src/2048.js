@@ -19,9 +19,37 @@ var Board2048 = React.createClass({
     }
   },
 
+  handleKey: function(event){
+    switch( event.keyCode ){
+      case 37:
+        model2048.moveLeft();
+        break;
+      case 38:
+        model2048.moveUp();
+        break;
+      case 39:
+        model2048.moveRight();
+        break;
+      case 40:
+        model2048.moveDown();
+        break;
+    }
+    model2048.addNewSquare();
+    this.updateTileState();
+    this.forceUpdate();
+  },
+
   componentWillMount: function() {
     model2048.init();
     this.updateTileState();
+  },
+
+  componentDidMount: function() {
+    window.addEventListener( 'keydown', this.handleKey );
+  },
+
+  componentWillUnmount: function() {
+
   },
 
   render: function() {
