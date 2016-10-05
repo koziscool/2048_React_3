@@ -3,6 +3,16 @@ var FOUR = 4;
 var CSSTransitionGroup = React.addons.CSSTransitionGroup;
 var Board2048 = React.createClass({
 
+  getInitialState: function() {
+    return {
+      tiles: []
+    };
+  },
+
+  componentWillMount: function() {
+    model2048.init();
+  },
+
   render: function() {
     var children = [];
 
