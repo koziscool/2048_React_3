@@ -9,16 +9,30 @@ var Board2048 = React.createClass({
     };
   },
 
+  updateTileState: function() {
+    var row, col;
+    for ( var i = 0; i < model2048.numTiles; i++ ){
+      row = Math.floor( i/FOUR );
+      col = i % 4;
+      var value = model2048.getTile( row, col );
+      this.state.tiles[i] = value;
+    }
+  },
+
   componentWillMount: function() {
     model2048.init();
+    this.updateTileState();
   },
 
   render: function() {
     var children = [];
 
-    for ( var i = 0; i < 16; i++){
-      var value = 4;
-      children.push( <Tile2048 key={i} index={i} value={22} className="animateItem"/> )
+    var row, col;
+    for ( var i = 0; i < model2048.numTiles; i++ ){
+      row = Math.floor( i/FOUR );
+      col = i % 4;
+      var value = model2048.getTile( row, col );
+      children.push( <Tile2048 key={i} index={i} value={value} className="animateItem"/> )
     }
     return (
       <CSSTransitionGroup
@@ -42,15 +56,16 @@ var Tile2048 = React.createClass({
         'blue', 'purple', 'brown', 'black', 'darkyellow', 'lightblue', 'pink'];
     var row = Math.floor( this.props.index / FOUR );
     var col = this.props.index % 4;
+    var colorIndex = Math.max( Math.floor( Math.log2( this.props.value)), 0 );
 
     var style = {
       left: 128* col,
       top:  128 * row,
-      background: colors[6]
+      background: colors[ colorIndex ]
     };
 
     return (
-      <div className="animateItem" style={style}>{ 32 }</div>
+      <div className="animateItem" style={style}>{ this.props.value }</div>
     );
   }
 });
