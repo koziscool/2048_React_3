@@ -1,4 +1,27 @@
 
+.section div {
+  display: inline;
+  font-weight: bold;
+  color: white;
+}
+
+.section {
+  text-align: center;
+  display: inline-block;
+  width: 25%;
+  position: relative;
+  top: 10px;
+  color: #DDD;
+  float: left;
+}
+
+.game-info {
+  display: block;
+  height: 40px;
+  margin: 0 0 10px 0;
+  background-color: gray;
+}
+
 .example-enter,
 .example-leave {
   -webkit-transition: all .25s;
